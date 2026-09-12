@@ -14,7 +14,24 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as MasukRouteImport } from './routes/masuk'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated.dashboard'
+import { Route as AuthenticatedDendaRouteImport } from './routes/_authenticated.denda'
+import { Route as AuthenticatedKategoriRouteImport } from './routes/_authenticated.kategori'
+import { Route as AuthenticatedLaporanRouteImport } from './routes/_authenticated.laporan'
+import { Route as AuthenticatedPenerbitRouteImport } from './routes/_authenticated.penerbit'
+import { Route as AuthenticatedPengaturanRouteImport } from './routes/_authenticated.pengaturan'
+import { Route as AuthenticatedPengembalianRouteImport } from './routes/_authenticated.pengembalian'
+import { Route as AuthenticatedPenulisRouteImport } from './routes/_authenticated.penulis'
 import { Route as AuthenticatedProfilRouteImport } from './routes/_authenticated.profil'
+import { Route as AuthenticatedReservasiRouteImport } from './routes/_authenticated.reservasi'
+import { Route as AuthenticatedAnggotaIndexRouteImport } from './routes/_authenticated.anggota.index'
+import { Route as AuthenticatedAnggotaMemberIdRouteImport } from './routes/_authenticated.anggota.$memberId'
+import { Route as AuthenticatedBukuIndexRouteImport } from './routes/_authenticated.buku.index'
+import { Route as AuthenticatedBukuBaruRouteImport } from './routes/_authenticated.buku.baru'
+import { Route as AuthenticatedPeminjamanAktifRouteImport } from './routes/_authenticated.peminjaman.aktif'
+import { Route as AuthenticatedPeminjamanBaruRouteImport } from './routes/_authenticated.peminjaman.baru'
+import { Route as AuthenticatedPeminjamanRiwayatRouteImport } from './routes/_authenticated.peminjaman.riwayat'
+import { Route as AuthenticatedBukuBookIdIndexRouteImport } from './routes/_authenticated.buku.$bookId.index'
+import { Route as AuthenticatedBukuBookIdEditRouteImport } from './routes/_authenticated.buku.$bookId.edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,25 +57,152 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedDendaRoute = AuthenticatedDendaRouteImport.update({
+  id: '/denda',
+  path: '/denda',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedKategoriRoute = AuthenticatedKategoriRouteImport.update({
+  id: '/kategori',
+  path: '/kategori',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedLaporanRoute = AuthenticatedLaporanRouteImport.update({
+  id: '/laporan',
+  path: '/laporan',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedPenerbitRoute = AuthenticatedPenerbitRouteImport.update({
+  id: '/penerbit',
+  path: '/penerbit',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedPengaturanRoute = AuthenticatedPengaturanRouteImport.update({
+  id: '/pengaturan',
+  path: '/pengaturan',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedPengembalianRoute =
+  AuthenticatedPengembalianRouteImport.update({
+    id: '/pengembalian',
+    path: '/pengembalian',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedPenulisRoute = AuthenticatedPenulisRouteImport.update({
+  id: '/penulis',
+  path: '/penulis',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 const AuthenticatedProfilRoute = AuthenticatedProfilRouteImport.update({
   id: '/profil',
   path: '/profil',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedReservasiRoute = AuthenticatedReservasiRouteImport.update({
+  id: '/reservasi',
+  path: '/reservasi',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAnggotaIndexRoute =
+  AuthenticatedAnggotaIndexRouteImport.update({
+    id: '/anggota/',
+    path: '/anggota/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedAnggotaMemberIdRoute =
+  AuthenticatedAnggotaMemberIdRouteImport.update({
+    id: '/anggota/$memberId',
+    path: '/anggota/$memberId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedBukuIndexRoute = AuthenticatedBukuIndexRouteImport.update({
+  id: '/buku/',
+  path: '/buku/',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedBukuBaruRoute = AuthenticatedBukuBaruRouteImport.update({
+  id: '/buku/baru',
+  path: '/buku/baru',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedPeminjamanAktifRoute =
+  AuthenticatedPeminjamanAktifRouteImport.update({
+    id: '/peminjaman/aktif',
+    path: '/peminjaman/aktif',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedPeminjamanBaruRoute =
+  AuthenticatedPeminjamanBaruRouteImport.update({
+    id: '/peminjaman/baru',
+    path: '/peminjaman/baru',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedPeminjamanRiwayatRoute =
+  AuthenticatedPeminjamanRiwayatRouteImport.update({
+    id: '/peminjaman/riwayat',
+    path: '/peminjaman/riwayat',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedBukuBookIdIndexRoute =
+  AuthenticatedBukuBookIdIndexRouteImport.update({
+    id: '/buku/$bookId/',
+    path: '/buku/$bookId/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedBukuBookIdEditRoute =
+  AuthenticatedBukuBookIdEditRouteImport.update({
+    id: '/buku/$bookId/edit',
+    path: '/buku/$bookId/edit',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/masuk': typeof MasukRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/denda': typeof AuthenticatedDendaRoute
+  '/kategori': typeof AuthenticatedKategoriRoute
+  '/laporan': typeof AuthenticatedLaporanRoute
+  '/penerbit': typeof AuthenticatedPenerbitRoute
+  '/pengaturan': typeof AuthenticatedPengaturanRoute
+  '/pengembalian': typeof AuthenticatedPengembalianRoute
+  '/penulis': typeof AuthenticatedPenulisRoute
   '/profil': typeof AuthenticatedProfilRoute
+  '/reservasi': typeof AuthenticatedReservasiRoute
+  '/anggota/$memberId': typeof AuthenticatedAnggotaMemberIdRoute
+  '/buku/baru': typeof AuthenticatedBukuBaruRoute
+  '/peminjaman/aktif': typeof AuthenticatedPeminjamanAktifRoute
+  '/peminjaman/baru': typeof AuthenticatedPeminjamanBaruRoute
+  '/peminjaman/riwayat': typeof AuthenticatedPeminjamanRiwayatRoute
+  '/anggota/': typeof AuthenticatedAnggotaIndexRoute
+  '/buku/': typeof AuthenticatedBukuIndexRoute
+  '/buku/$bookId/edit': typeof AuthenticatedBukuBookIdEditRoute
+  '/buku/$bookId/': typeof AuthenticatedBukuBookIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/masuk': typeof MasukRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/denda': typeof AuthenticatedDendaRoute
+  '/kategori': typeof AuthenticatedKategoriRoute
+  '/laporan': typeof AuthenticatedLaporanRoute
+  '/penerbit': typeof AuthenticatedPenerbitRoute
+  '/pengaturan': typeof AuthenticatedPengaturanRoute
+  '/pengembalian': typeof AuthenticatedPengembalianRoute
+  '/penulis': typeof AuthenticatedPenulisRoute
   '/profil': typeof AuthenticatedProfilRoute
+  '/reservasi': typeof AuthenticatedReservasiRoute
+  '/anggota/$memberId': typeof AuthenticatedAnggotaMemberIdRoute
+  '/buku/baru': typeof AuthenticatedBukuBaruRoute
+  '/peminjaman/aktif': typeof AuthenticatedPeminjamanAktifRoute
+  '/peminjaman/baru': typeof AuthenticatedPeminjamanBaruRoute
+  '/peminjaman/riwayat': typeof AuthenticatedPeminjamanRiwayatRoute
+  '/anggota': typeof AuthenticatedAnggotaIndexRoute
+  '/buku': typeof AuthenticatedBukuIndexRoute
+  '/buku/$bookId/edit': typeof AuthenticatedBukuBookIdEditRoute
+  '/buku/$bookId': typeof AuthenticatedBukuBookIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -67,13 +211,74 @@ export interface FileRoutesById {
   '/masuk': typeof MasukRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/denda': typeof AuthenticatedDendaRoute
+  '/_authenticated/kategori': typeof AuthenticatedKategoriRoute
+  '/_authenticated/laporan': typeof AuthenticatedLaporanRoute
+  '/_authenticated/penerbit': typeof AuthenticatedPenerbitRoute
+  '/_authenticated/pengaturan': typeof AuthenticatedPengaturanRoute
+  '/_authenticated/pengembalian': typeof AuthenticatedPengembalianRoute
+  '/_authenticated/penulis': typeof AuthenticatedPenulisRoute
   '/_authenticated/profil': typeof AuthenticatedProfilRoute
+  '/_authenticated/reservasi': typeof AuthenticatedReservasiRoute
+  '/_authenticated/anggota/$memberId': typeof AuthenticatedAnggotaMemberIdRoute
+  '/_authenticated/buku/baru': typeof AuthenticatedBukuBaruRoute
+  '/_authenticated/peminjaman/aktif': typeof AuthenticatedPeminjamanAktifRoute
+  '/_authenticated/peminjaman/baru': typeof AuthenticatedPeminjamanBaruRoute
+  '/_authenticated/peminjaman/riwayat': typeof AuthenticatedPeminjamanRiwayatRoute
+  '/_authenticated/anggota/': typeof AuthenticatedAnggotaIndexRoute
+  '/_authenticated/buku/': typeof AuthenticatedBukuIndexRoute
+  '/_authenticated/buku/$bookId/edit': typeof AuthenticatedBukuBookIdEditRoute
+  '/_authenticated/buku/$bookId/': typeof AuthenticatedBukuBookIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/masuk' | '/reset-password' | '/dashboard' | '/profil'
+  fullPaths:
+    | '/'
+    | '/masuk'
+    | '/reset-password'
+    | '/dashboard'
+    | '/denda'
+    | '/kategori'
+    | '/laporan'
+    | '/penerbit'
+    | '/pengaturan'
+    | '/pengembalian'
+    | '/penulis'
+    | '/profil'
+    | '/reservasi'
+    | '/anggota/$memberId'
+    | '/buku/baru'
+    | '/peminjaman/aktif'
+    | '/peminjaman/baru'
+    | '/peminjaman/riwayat'
+    | '/anggota/'
+    | '/buku/'
+    | '/buku/$bookId/edit'
+    | '/buku/$bookId/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/masuk' | '/reset-password' | '/dashboard' | '/profil'
+  to:
+    | '/'
+    | '/masuk'
+    | '/reset-password'
+    | '/dashboard'
+    | '/denda'
+    | '/kategori'
+    | '/laporan'
+    | '/penerbit'
+    | '/pengaturan'
+    | '/pengembalian'
+    | '/penulis'
+    | '/profil'
+    | '/reservasi'
+    | '/anggota/$memberId'
+    | '/buku/baru'
+    | '/peminjaman/aktif'
+    | '/peminjaman/baru'
+    | '/peminjaman/riwayat'
+    | '/anggota'
+    | '/buku'
+    | '/buku/$bookId/edit'
+    | '/buku/$bookId'
   id:
     | '__root__'
     | '/'
@@ -81,7 +286,24 @@ export interface FileRouteTypes {
     | '/masuk'
     | '/reset-password'
     | '/_authenticated/dashboard'
+    | '/_authenticated/denda'
+    | '/_authenticated/kategori'
+    | '/_authenticated/laporan'
+    | '/_authenticated/penerbit'
+    | '/_authenticated/pengaturan'
+    | '/_authenticated/pengembalian'
+    | '/_authenticated/penulis'
     | '/_authenticated/profil'
+    | '/_authenticated/reservasi'
+    | '/_authenticated/anggota/$memberId'
+    | '/_authenticated/buku/baru'
+    | '/_authenticated/peminjaman/aktif'
+    | '/_authenticated/peminjaman/baru'
+    | '/_authenticated/peminjaman/riwayat'
+    | '/_authenticated/anggota/'
+    | '/_authenticated/buku/'
+    | '/_authenticated/buku/$bookId/edit'
+    | '/_authenticated/buku/$bookId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -128,6 +350,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/denda': {
+      id: '/_authenticated/denda'
+      path: '/denda'
+      fullPath: '/denda'
+      preLoaderRoute: typeof AuthenticatedDendaRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/kategori': {
+      id: '/_authenticated/kategori'
+      path: '/kategori'
+      fullPath: '/kategori'
+      preLoaderRoute: typeof AuthenticatedKategoriRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/laporan': {
+      id: '/_authenticated/laporan'
+      path: '/laporan'
+      fullPath: '/laporan'
+      preLoaderRoute: typeof AuthenticatedLaporanRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/penerbit': {
+      id: '/_authenticated/penerbit'
+      path: '/penerbit'
+      fullPath: '/penerbit'
+      preLoaderRoute: typeof AuthenticatedPenerbitRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/pengaturan': {
+      id: '/_authenticated/pengaturan'
+      path: '/pengaturan'
+      fullPath: '/pengaturan'
+      preLoaderRoute: typeof AuthenticatedPengaturanRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/pengembalian': {
+      id: '/_authenticated/pengembalian'
+      path: '/pengembalian'
+      fullPath: '/pengembalian'
+      preLoaderRoute: typeof AuthenticatedPengembalianRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/penulis': {
+      id: '/_authenticated/penulis'
+      path: '/penulis'
+      fullPath: '/penulis'
+      preLoaderRoute: typeof AuthenticatedPenulisRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/profil': {
       id: '/_authenticated/profil'
       path: '/profil'
@@ -135,17 +406,121 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfilRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/reservasi': {
+      id: '/_authenticated/reservasi'
+      path: '/reservasi'
+      fullPath: '/reservasi'
+      preLoaderRoute: typeof AuthenticatedReservasiRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/anggota/': {
+      id: '/_authenticated/anggota/'
+      path: '/anggota'
+      fullPath: '/anggota/'
+      preLoaderRoute: typeof AuthenticatedAnggotaIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/anggota/$memberId': {
+      id: '/_authenticated/anggota/$memberId'
+      path: '/anggota/$memberId'
+      fullPath: '/anggota/$memberId'
+      preLoaderRoute: typeof AuthenticatedAnggotaMemberIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/buku/': {
+      id: '/_authenticated/buku/'
+      path: '/buku'
+      fullPath: '/buku/'
+      preLoaderRoute: typeof AuthenticatedBukuIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/buku/baru': {
+      id: '/_authenticated/buku/baru'
+      path: '/buku/baru'
+      fullPath: '/buku/baru'
+      preLoaderRoute: typeof AuthenticatedBukuBaruRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/peminjaman/aktif': {
+      id: '/_authenticated/peminjaman/aktif'
+      path: '/peminjaman/aktif'
+      fullPath: '/peminjaman/aktif'
+      preLoaderRoute: typeof AuthenticatedPeminjamanAktifRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/peminjaman/baru': {
+      id: '/_authenticated/peminjaman/baru'
+      path: '/peminjaman/baru'
+      fullPath: '/peminjaman/baru'
+      preLoaderRoute: typeof AuthenticatedPeminjamanBaruRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/peminjaman/riwayat': {
+      id: '/_authenticated/peminjaman/riwayat'
+      path: '/peminjaman/riwayat'
+      fullPath: '/peminjaman/riwayat'
+      preLoaderRoute: typeof AuthenticatedPeminjamanRiwayatRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/buku/$bookId/': {
+      id: '/_authenticated/buku/$bookId/'
+      path: '/buku/$bookId'
+      fullPath: '/buku/$bookId/'
+      preLoaderRoute: typeof AuthenticatedBukuBookIdIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/buku/$bookId/edit': {
+      id: '/_authenticated/buku/$bookId/edit'
+      path: '/buku/$bookId/edit'
+      fullPath: '/buku/$bookId/edit'
+      preLoaderRoute: typeof AuthenticatedBukuBookIdEditRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedDendaRoute: typeof AuthenticatedDendaRoute
+  AuthenticatedKategoriRoute: typeof AuthenticatedKategoriRoute
+  AuthenticatedLaporanRoute: typeof AuthenticatedLaporanRoute
+  AuthenticatedPenerbitRoute: typeof AuthenticatedPenerbitRoute
+  AuthenticatedPengaturanRoute: typeof AuthenticatedPengaturanRoute
+  AuthenticatedPengembalianRoute: typeof AuthenticatedPengembalianRoute
+  AuthenticatedPenulisRoute: typeof AuthenticatedPenulisRoute
   AuthenticatedProfilRoute: typeof AuthenticatedProfilRoute
+  AuthenticatedReservasiRoute: typeof AuthenticatedReservasiRoute
+  AuthenticatedAnggotaMemberIdRoute: typeof AuthenticatedAnggotaMemberIdRoute
+  AuthenticatedBukuBaruRoute: typeof AuthenticatedBukuBaruRoute
+  AuthenticatedPeminjamanAktifRoute: typeof AuthenticatedPeminjamanAktifRoute
+  AuthenticatedPeminjamanBaruRoute: typeof AuthenticatedPeminjamanBaruRoute
+  AuthenticatedPeminjamanRiwayatRoute: typeof AuthenticatedPeminjamanRiwayatRoute
+  AuthenticatedAnggotaIndexRoute: typeof AuthenticatedAnggotaIndexRoute
+  AuthenticatedBukuIndexRoute: typeof AuthenticatedBukuIndexRoute
+  AuthenticatedBukuBookIdEditRoute: typeof AuthenticatedBukuBookIdEditRoute
+  AuthenticatedBukuBookIdIndexRoute: typeof AuthenticatedBukuBookIdIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedDendaRoute: AuthenticatedDendaRoute,
+  AuthenticatedKategoriRoute: AuthenticatedKategoriRoute,
+  AuthenticatedLaporanRoute: AuthenticatedLaporanRoute,
+  AuthenticatedPenerbitRoute: AuthenticatedPenerbitRoute,
+  AuthenticatedPengaturanRoute: AuthenticatedPengaturanRoute,
+  AuthenticatedPengembalianRoute: AuthenticatedPengembalianRoute,
+  AuthenticatedPenulisRoute: AuthenticatedPenulisRoute,
   AuthenticatedProfilRoute: AuthenticatedProfilRoute,
+  AuthenticatedReservasiRoute: AuthenticatedReservasiRoute,
+  AuthenticatedAnggotaMemberIdRoute: AuthenticatedAnggotaMemberIdRoute,
+  AuthenticatedBukuBaruRoute: AuthenticatedBukuBaruRoute,
+  AuthenticatedPeminjamanAktifRoute: AuthenticatedPeminjamanAktifRoute,
+  AuthenticatedPeminjamanBaruRoute: AuthenticatedPeminjamanBaruRoute,
+  AuthenticatedPeminjamanRiwayatRoute: AuthenticatedPeminjamanRiwayatRoute,
+  AuthenticatedAnggotaIndexRoute: AuthenticatedAnggotaIndexRoute,
+  AuthenticatedBukuIndexRoute: AuthenticatedBukuIndexRoute,
+  AuthenticatedBukuBookIdEditRoute: AuthenticatedBukuBookIdEditRoute,
+  AuthenticatedBukuBookIdIndexRoute: AuthenticatedBukuBookIdIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

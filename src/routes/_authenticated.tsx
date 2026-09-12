@@ -14,7 +14,8 @@ function AuthenticatedLayout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && !session) void navigate({ to: "/masuk", replace: true });
+    if (!loading && !session)
+      void navigate({ to: "/masuk", search: { tab: "masuk" }, replace: true });
   }, [loading, session, navigate]);
 
   if (loading || !session) {

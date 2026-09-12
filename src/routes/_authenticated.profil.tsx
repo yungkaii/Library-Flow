@@ -24,25 +24,26 @@ function ProfilePage() {
         </Alert>
       )}
       {!loading && profile && (
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)]">
-          <section className="card-surface flex items-center gap-4 p-6 lg:block">
-            <Avatar className="h-16 w-16">
+        <div className="grid border-t-2 border-primary lg:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)]">
+          <section className="flex items-center gap-4 bg-primary p-7 text-primary-foreground lg:block">
+            <Avatar className="h-20 w-20">
               <AvatarFallback className="bg-primary text-lg text-primary-foreground">
                 {name.slice(0, 1).toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div className="min-w-0 lg:mt-5">
               <h1 className="truncate text-xl font-semibold">{name}</h1>
-              <p className="mt-1 truncate text-sm text-muted-foreground">{user?.email}</p>
+              <p className="mt-1 truncate text-sm text-primary-foreground/80">{user?.email}</p>
               {profile.member_code && (
-                <p className="mt-4 text-xs font-medium uppercase tracking-wide text-primary">
+                <p className="mt-4 text-xs font-medium uppercase tracking-wide text-primary-foreground/90">
                   Kode anggota: {profile.member_code}
                 </p>
               )}
             </div>
           </section>
-          <section className="card-surface p-6 sm:p-8">
-            <h2 className="text-lg font-semibold">Informasi pribadi</h2>
+          <section className="border-x border-b border-border p-6 sm:p-9">
+            <p className="eyebrow text-muted-foreground">Data keanggotaan</p>
+            <h2 className="mt-2 font-display text-2xl font-bold">Informasi pribadi</h2>
             <p className="mt-1 mb-6 text-sm text-muted-foreground">
               Data ini digunakan untuk kebutuhan layanan perpustakaan.
             </p>

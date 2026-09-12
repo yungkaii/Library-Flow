@@ -46,18 +46,25 @@ function AuthPage() {
   }, [loading, session, navigate]);
 
   return (
-    <div className="flex min-h-screen flex-col overflow-x-hidden bg-background">
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-5 sm:px-6">
+    <div className="min-h-screen overflow-x-hidden bg-background">
+      <header className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-5 py-5 sm:px-8">
         <Link to="/" className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+          <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-accent text-accent-foreground">
             <Library className="h-5 w-5" />
           </span>
-          <span className="font-display text-base font-semibold">Perpustakaan</span>
+          <span className="font-display text-sm font-bold tracking-wide text-foreground lg:text-primary-foreground">LIBRARY FLOW</span>
         </Link>
         <ThemeToggle />
       </header>
 
-      <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-4 pb-16">
+      <main className="grid min-h-screen lg:grid-cols-[minmax(0,.9fr)_minmax(28rem,.55fr)]">
+        <section className="hidden bg-primary p-12 text-primary-foreground lg:flex lg:flex-col lg:justify-end">
+          <p className="eyebrow text-primary-foreground">Ruang baca digital</p>
+          <h2 className="mt-5 max-w-xl font-display text-5xl font-bold leading-tight">Setiap buku punya tempat. Setiap pembaca punya perjalanan.</h2>
+          <div className="mt-12 grid grid-cols-3 border-t border-primary-foreground/20 pt-6 text-xs text-primary-foreground/60"><span>Katalog</span><span>Sirkulasi</span><span>Keanggotaan</span></div>
+        </section>
+        <section className="flex flex-col justify-center px-5 pb-12 pt-24 sm:px-10 lg:px-14">
+        <div className="mx-auto w-full max-w-md">
         {!isSupabaseConfigured && (
           <Alert className="mb-4">
             <AlertTitle>Basis data belum terhubung</AlertTitle>
@@ -68,8 +75,9 @@ function AuthPage() {
           </Alert>
         )}
 
-        <div className="card-surface p-6 sm:p-8">
-          <h1 className="font-display text-2xl font-semibold">
+        <div className="border-t-2 border-primary pt-7">
+          <p className="eyebrow text-muted-foreground">Akses anggota & staf</p>
+          <h1 className="mt-3 font-display text-3xl font-bold">
             {tab === "daftar" ? "Buat Akun Anggota" : "Masuk ke Akun"}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -100,7 +108,7 @@ function AuthPage() {
               />
             </TabsContent>
           </Tabs>
-        </div>
+        </div></div></section>
       </main>
     </div>
   );

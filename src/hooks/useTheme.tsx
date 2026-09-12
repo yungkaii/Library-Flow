@@ -1,28 +1,79 @@
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
-type Theme = "light" | "dark";
+import { useAuth } from "@/hooks/useAuth";
+import { getLibrarySettings } from "@/services/settings.service";
 
-const ThemeContext = createContext<{ theme: Theme; toggle: () => void } | null>(null);
+type Theme = "light" | "dark";
+type ThemePreference = Theme | "system";
+
+const ThemeContext = createContext<{
+  theme: Theme;
+  preference: ThemePreference;
+  setPreference: (preference: ThemePreference) => void;
+  toggle: () => void;
+} | null>(null);
 
 const STORAGE_KEY = "perpus-theme";
 
+function isThemePreference(value: string | null): value is ThemePreference {
+  return value === "light" || value === "dark" || value === "system";
+}
+
+function resolveTheme(preference: ThemePreference): Theme {
+  if (preference !== "system") return preference;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const { isAdmin, loading: authLoading } = useAuth();
+  const [preference, setPreferenceState] = useState<ThemePreference>("system");
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setTheme(stored ?? (prefersDark ? "dark" : "light"));
-  }, []);
+    if (authLoading) return;
+
+    let active = true;
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+
+    const loadPreference = async () => {
+      let nextPreference: ThemePreference = isThemePreference(stored) ? stored : "system";
+
+      if (!stored && isAdmin) {
+        try {
+          const settings = await getLibrarySettings();
+          nextPreference = settings.default_theme;
+        } catch {
+          // Non-admin sessions cannot read the library-wide setting.
+        }
+      }
+
+      if (active) setPreferenceState(nextPreference);
+    };
+
+    void loadPreference();
+    return () => {
+      active = false;
+    };
+  }, [authLoading, isAdmin]);
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    window.localStorage.setItem(STORAGE_KEY, theme);
-  }, [theme]);
+    const resolvedTheme = resolveTheme(preference);
+    setTheme(resolvedTheme);
+    document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
+    window.localStorage.setItem(STORAGE_KEY, preference);
+  }, [preference]);
 
-  const toggle = useCallback(() => setTheme((t) => (t === "dark" ? "light" : "dark")), []);
+  const setPreference = useCallback((nextPreference: ThemePreference) => {
+    setPreferenceState(nextPreference);
+    setTheme(resolveTheme(nextPreference));
+  }, []);
 
-  return <ThemeContext.Provider value={{ theme, toggle }}>{children}</ThemeContext.Provider>;
+  const toggle = useCallback(
+    () => setPreference(theme === "dark" ? "light" : "dark"),
+    [setPreference, theme],
+  );
+
+  return <ThemeContext.Provider value={{ theme, preference, setPreference, toggle }}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme() {

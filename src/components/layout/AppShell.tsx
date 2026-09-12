@@ -1,9 +1,10 @@
 import { useNavigate } from "@tanstack/react-router";
-import { LogOut } from "lucide-react";
+import { LogOut, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { AppSidebar } from "@/components/layout/AppSidebar";
+import { NotificationCenter } from "@/components/layout/NotificationCenter";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -42,7 +43,7 @@ export function AppShell({
     try {
       await signOut();
       toast.success("Berhasil keluar");
-      await navigate({ to: "/masuk", replace: true });
+      await navigate({ to: "/masuk", search: { tab: "masuk" }, replace: true });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Gagal keluar");
     } finally {
@@ -57,28 +58,30 @@ export function AppShell({
       <div className="flex min-h-screen w-full overflow-x-hidden bg-background">
         <AppSidebar />
         <SidebarInset className="min-w-0">
-          <header className="sticky top-0 z-20 flex h-16 items-center gap-2 border-b border-border bg-background/80 px-3 backdrop-blur sm:px-6">
-            <SidebarTrigger />
-            <div className="ml-1 flex min-w-0 flex-1 items-center gap-2">
-              <span className="truncate font-display text-base font-semibold sm:text-lg">
-                {title}
-              </span>
+          <header className="sticky top-0 z-20 grid h-16 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 border-b border-border/70 bg-background/90 px-3 backdrop-blur-md sm:px-7">
+            <SidebarTrigger className="shrink-0" />
+            <div className="flex min-w-0 items-center gap-3">
+              <span className="hidden h-5 w-px bg-border sm:block" />
+              <span className="max-w-[38vw] truncate text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground sm:max-w-none">{title}</span>
               {roles.map((role) => (
-                <Badge key={role} variant="secondary" className="hidden shrink-0 sm:inline-flex">
+                <Badge key={role} variant="secondary" className="hidden shrink-0 rounded-sm text-[10px] uppercase tracking-[0.1em] lg:inline-flex">
                   {ROLE_LABEL[role]}
                 </Badge>
               ))}
             </div>
-            <ThemeToggle />
-            <div className="hidden items-center gap-2 sm:flex">
-              <Avatar className="h-8 w-8">
-                <AvatarFallback className="text-xs">{initials(displayName)}</AvatarFallback>
+            <div className="flex shrink-0 items-center gap-1">
+              <ThemeToggle />
+              <NotificationCenter />
+              <div className="ml-1 hidden items-center gap-2 border-l border-border pl-3 sm:flex">
+              <Avatar className="h-8 w-8 rounded-sm">
+                <AvatarFallback className="rounded-sm bg-primary text-xs text-primary-foreground">{initials(displayName)}</AvatarFallback>
               </Avatar>
-              <span className="max-w-[10rem] truncate text-sm text-muted-foreground">
-                {displayName}
-              </span>
-            </div>
-            <Button
+              <div className="min-w-0">
+                <span className="block max-w-[9rem] truncate text-xs font-semibold">{displayName}</span>
+                <span className="flex items-center gap-1 text-[10px] text-muted-foreground"><Sparkles className="h-2.5 w-2.5" /> Sedang bertugas</span>
+              </div>
+              </div>
+              <Button
               variant="ghost"
               size="icon"
               onClick={handleSignOut}
@@ -86,14 +89,13 @@ export function AppShell({
               aria-label="Keluar"
             >
               <LogOut className="h-4 w-4" />
-            </Button>
+              </Button>
+            </div>
           </header>
 
-          <main className="min-w-0 flex-1 px-3 py-6 sm:px-6 lg:px-8">
-            <div className="mx-auto w-full max-w-6xl">
-              {description && (
-                <p className="mb-6 text-sm text-muted-foreground">{description}</p>
-              )}
+          <main className="min-w-0 flex-1 px-4 py-7 sm:px-7 lg:px-10 lg:py-10">
+            <div className="page-enter mx-auto w-full max-w-7xl">
+              {description && <p className="mb-7 max-w-2xl text-sm leading-6 text-muted-foreground">{description}</p>}
               {children}
             </div>
           </main>

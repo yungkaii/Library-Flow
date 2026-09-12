@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Loader2 } from "lucide-react";
+import { Library, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -53,9 +53,15 @@ function ResetPasswordPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center overflow-x-hidden bg-background px-4">
-      <div className="card-surface w-full max-w-md p-6 sm:p-8">
-        <h1 className="font-display text-2xl font-semibold">Atur Ulang Kata Sandi</h1>
+    <div className="grid min-h-screen overflow-x-hidden bg-background lg:grid-cols-[minmax(0,.8fr)_minmax(28rem,.55fr)]">
+      <aside className="hidden bg-primary p-12 text-primary-foreground lg:flex lg:flex-col lg:justify-between">
+        <span className="flex items-center gap-3 font-display text-sm font-bold"><span className="grid h-9 w-9 place-items-center rounded-sm bg-accent text-accent-foreground"><Library className="h-5 w-5" /></span>LIBRARY FLOW</span>
+        <div><p className="eyebrow text-primary-foreground">Keamanan akun</p><p className="mt-5 max-w-md font-display text-5xl font-bold leading-tight">Kembali ke koleksi Anda dengan aman.</p></div>
+      </aside>
+      <main className="flex items-center px-5 py-24 sm:px-12">
+      <div className="mx-auto w-full max-w-md border-t-2 border-primary pt-7">
+        <p className="eyebrow text-muted-foreground">Pemulihan akses</p>
+        <h1 className="mt-3 font-display text-3xl font-bold">Atur Ulang Kata Sandi</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           Buka halaman ini dari tautan yang dikirim ke email Anda, lalu buat kata sandi baru.
         </p>
@@ -93,7 +99,7 @@ function ResetPasswordPage() {
             </Button>
           </form>
         </Form>
-      </div>
+      </div></main>
     </div>
   );
 }

@@ -29,7 +29,7 @@ export function RegisterForm({ onRegistered }: { onRegistered: () => void }) {
         email: values.email,
         password: values.password,
         fullName: values.fullName,
-        phone: values.phone || undefined,
+        ...(values.phone ? { phone: values.phone } : {}),
       });
       if (result.session) {
         toast.success("Akun dibuat. Anda sudah masuk.");
